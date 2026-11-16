@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "synthetic-power-001",
+  "title": "Educational radial DC voltage architecture comparison",
+  "owner": "example-only",
+  "hypothesis": "For the same constant-power demand and declared loop resistance, a higher stiff-source voltage reduces branch current and resistive loss in this DC model.",
+  "protocol_reference": "docs/MODEL.md; synthetic arithmetic study, not equipment design",
+  "differentiation": "No novel power architecture is established by this baseline solver. Related-work review, independent models and experimental validation remain required.",
+  "reliability_notes": "No failure-rate, redundancy, common-cause or availability model is supplied. Declared limit checks are not reliability or safety approval.",
+  "data_kind": "synthetic",
+  "nodes": [
+    {"id": "feeder", "label": "Fictional feeder load", "parent": "source", "load_kw": 2000, "line_resistance_ohm": 5, "max_current_a": 25, "min_voltage_fraction": 0.95},
+    {"id": "downstream", "label": "Fictional downstream load", "parent": "feeder", "load_kw": 1000, "line_resistance_ohm": 2, "max_current_a": 15, "min_voltage_fraction": 0.95},
+    {"id": "parallel", "label": "Fictional parallel load", "parent": "source", "load_kw": 2000, "line_resistance_ohm": 5, "max_current_a": 25, "min_voltage_fraction": 0.95}
+  ],
+  "scenarios": [
+    {"id": "reference", "label": "Fictional 100 kV source", "source_voltage_kv": 100, "source_power_limit_mw": 6, "assumption_reference": "Ideal stiff DC source and illustrative owner criteria; no equipment ratings"},
+    {"id": "higher-voltage", "label": "Fictional 200 kV source", "source_voltage_kv": 200, "source_power_limit_mw": 6, "assumption_reference": "Sensitivity case; insulation, converters and switching are not modeled"},
+    {"id": "source-limit-gap", "label": "Fictional undersized source criterion", "source_voltage_kv": 100, "source_power_limit_mw": 4, "assumption_reference": "Intentional criterion gap; no physical source capability inferred"}
+  ],
+  "measurements": [],
+  "evidence": []
+}
